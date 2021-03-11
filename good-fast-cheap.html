@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minigame - Good,fast,cheap</title>
+    <style>
+        .text{
+            width: 125px; height: 50px;
+            font-size: 14pt;
+        }
+    </style>
+</head>
+<body>
+    <h3> Click buttons to change all of them to green</h3>
+    <button class = 'text' id = '1' onclick = "onClick(this.id)" style="background-color: red"> Good</button>
+    <button class = 'text' id = '2' onclick = "onClick(this.id)" style="background-color: red"> Fast</button>
+    <button class = 'text' id = '3' onclick = "onClick(this.id)" style="background-color: red"> Cheap</button>
+</body>
+</html>
+<script>
+    //change color when clicked
+    function change(idNum){
+        let element = document.getElementById(idNum);
+        if (element.style.backgroundColor == 'red') {
+            element.style.backgroundColor = 'green';
+        } else {
+            element.style.backgroundColor = 'red';
+        }
+    }
+    //check for colors of all three, change colors if all three are green
+    function render(id){
+        let check = ['1','2','3'];
+        let removed = document.getElementById(id).id;
+        let removedIndex = check.indexOf(removed);
+        check.splice(removedIndex,1);
+        let col1 = document.getElementById('1').style.backgroundColor;
+        let col2 = document.getElementById('2').style.backgroundColor;
+        let col3 = document.getElementById('3').style.backgroundColor;
+        if (col1 == 'green' && col2 == 'green' && col3 == 'green' ){
+            change(check[Math.floor(Math.random()*check.length)]);
+        }
+    }
+    //main function
+    function onClick(id){
+        change(id);
+        render(id);
+    }
+</script>
